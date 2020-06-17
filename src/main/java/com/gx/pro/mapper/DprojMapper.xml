@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.pro.mapper.DprojMapper">
+  <resultMap id="BaseResultMap" type="com.gx.pro.entity.Dproj">
+    <id column="projid" jdbcType="VARCHAR" property="projid" />
+    <result column="projname" jdbcType="VARCHAR" property="projname" />
+    <result column="projusername" jdbcType="VARCHAR" property="projusername" />
+    <result column="projdata" jdbcType="TIMESTAMP" property="projdata" />
+    <result column="publicsher" jdbcType="VARCHAR" property="publicsher" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="roleid" jdbcType="INTEGER" property="roleid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    projid, projname, projusername, projdata, publicsher, description, pic, roleid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dproj
+    where projid = #{projid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from dproj
+    where projid = #{projid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gx.pro.entity.Dproj">
+    insert into dproj (projid, projname, projusername, 
+      projdata, publicsher, description, 
+      pic, roleid)
+    values (#{projid,jdbcType=VARCHAR}, #{projname,jdbcType=VARCHAR}, #{projusername,jdbcType=VARCHAR}, 
+      #{projdata,jdbcType=TIMESTAMP}, #{publicsher,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{pic,jdbcType=VARCHAR}, #{roleid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gx.pro.entity.Dproj">
+    insert into dproj
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="projid != null">
+        projid,
+      </if>
+      <if test="projname != null">
+        projname,
+      </if>
+      <if test="projusername != null">
+        projusername,
+      </if>
+      <if test="projdata != null">
+        projdata,
+      </if>
+      <if test="publicsher != null">
+        publicsher,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="pic != null">
+        pic,
+      </if>
+      <if test="roleid != null">
+        roleid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="projid != null">
+        #{projid,jdbcType=VARCHAR},
+      </if>
+      <if test="projname != null">
+        #{projname,jdbcType=VARCHAR},
+      </if>
+      <if test="projusername != null">
+        #{projusername,jdbcType=VARCHAR},
+      </if>
+      <if test="projdata != null">
+        #{projdata,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publicsher != null">
+        #{publicsher,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null">
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null">
+        #{roleid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gx.pro.entity.Dproj">
+    update dproj
+    <set>
+      <if test="projname != null">
+        projname = #{projname,jdbcType=VARCHAR},
+      </if>
+      <if test="projusername != null">
+        projusername = #{projusername,jdbcType=VARCHAR},
+      </if>
+      <if test="projdata != null">
+        projdata = #{projdata,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publicsher != null">
+        publicsher = #{publicsher,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null">
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null">
+        roleid = #{roleid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where projid = #{projid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gx.pro.entity.Dproj">
+    update dproj
+    set projname = #{projname,jdbcType=VARCHAR},
+      projusername = #{projusername,jdbcType=VARCHAR},
+      projdata = #{projdata,jdbcType=TIMESTAMP},
+      publicsher = #{publicsher,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      roleid = #{roleid,jdbcType=INTEGER}
+    where projid = #{projid,jdbcType=VARCHAR}
+  </update>
+</mapper>

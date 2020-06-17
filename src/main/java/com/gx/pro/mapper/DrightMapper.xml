@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.pro.mapper.DrightMapper">
+  <resultMap id="BaseResultMap" type="com.gx.pro.entity.Dright">
+    <id column="rightid" jdbcType="INTEGER" property="rightid" />
+    <result column="rightname" jdbcType="VARCHAR" property="rightname" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    rightid, rightname, description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dright
+    where rightid = #{rightid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dright
+    where rightid = #{rightid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gx.pro.entity.Dright">
+    insert into dright (rightid, rightname, description
+      )
+    values (#{rightid,jdbcType=INTEGER}, #{rightname,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gx.pro.entity.Dright">
+    insert into dright
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rightid != null">
+        rightid,
+      </if>
+      <if test="rightname != null">
+        rightname,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rightid != null">
+        #{rightid,jdbcType=INTEGER},
+      </if>
+      <if test="rightname != null">
+        #{rightname,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gx.pro.entity.Dright">
+    update dright
+    <set>
+      <if test="rightname != null">
+        rightname = #{rightname,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rightid = #{rightid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gx.pro.entity.Dright">
+    update dright
+    set rightname = #{rightname,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR}
+    where rightid = #{rightid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.pro.mapper.DrolerightMapper">
+  <resultMap id="BaseResultMap" type="com.gx.pro.entity.Droleright">
+    <id column="rrid" jdbcType="INTEGER" property="rrid" />
+    <result column="roleid" jdbcType="INTEGER" property="roleid" />
+    <result column="rightid" jdbcType="INTEGER" property="rightid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    rrid, roleid, rightid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from droleright
+    where rrid = #{rrid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from droleright
+    where rrid = #{rrid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gx.pro.entity.Droleright">
+    insert into droleright (rrid, roleid, rightid
+      )
+    values (#{rrid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{rightid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gx.pro.entity.Droleright">
+    insert into droleright
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rrid != null">
+        rrid,
+      </if>
+      <if test="roleid != null">
+        roleid,
+      </if>
+      <if test="rightid != null">
+        rightid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rrid != null">
+        #{rrid,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null">
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="rightid != null">
+        #{rightid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gx.pro.entity.Droleright">
+    update droleright
+    <set>
+      <if test="roleid != null">
+        roleid = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="rightid != null">
+        rightid = #{rightid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where rrid = #{rrid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gx.pro.entity.Droleright">
+    update droleright
+    set roleid = #{roleid,jdbcType=INTEGER},
+      rightid = #{rightid,jdbcType=INTEGER}
+    where rrid = #{rrid,jdbcType=INTEGER}
+  </update>
+</mapper>

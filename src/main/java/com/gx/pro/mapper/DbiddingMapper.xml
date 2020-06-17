@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.pro.mapper.DbiddingMapper">
+  <resultMap id="BaseResultMap" type="com.gx.pro.entity.Dbidding">
+    <id column="bidid" jdbcType="INTEGER" property="bidid" />
+    <result column="projid" jdbcType="INTEGER" property="projid" />
+    <result column="biddata" jdbcType="TIMESTAMP" property="biddata" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="cliname" jdbcType="VARCHAR" property="cliname" />
+    <result column="bidprice" jdbcType="DOUBLE" property="bidprice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bidid, projid, biddata, username, cliname, bidprice
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbidding
+    where bidid = #{bidid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbidding
+    where bidid = #{bidid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gx.pro.entity.Dbidding">
+    insert into dbidding (bidid, projid, biddata, 
+      username, cliname, bidprice
+      )
+    values (#{bidid,jdbcType=INTEGER}, #{projid,jdbcType=INTEGER}, #{biddata,jdbcType=TIMESTAMP}, 
+      #{username,jdbcType=VARCHAR}, #{cliname,jdbcType=VARCHAR}, #{bidprice,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gx.pro.entity.Dbidding">
+    insert into dbidding
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bidid != null">
+        bidid,
+      </if>
+      <if test="projid != null">
+        projid,
+      </if>
+      <if test="biddata != null">
+        biddata,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="cliname != null">
+        cliname,
+      </if>
+      <if test="bidprice != null">
+        bidprice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bidid != null">
+        #{bidid,jdbcType=INTEGER},
+      </if>
+      <if test="projid != null">
+        #{projid,jdbcType=INTEGER},
+      </if>
+      <if test="biddata != null">
+        #{biddata,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="cliname != null">
+        #{cliname,jdbcType=VARCHAR},
+      </if>
+      <if test="bidprice != null">
+        #{bidprice,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gx.pro.entity.Dbidding">
+    update dbidding
+    <set>
+      <if test="projid != null">
+        projid = #{projid,jdbcType=INTEGER},
+      </if>
+      <if test="biddata != null">
+        biddata = #{biddata,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="cliname != null">
+        cliname = #{cliname,jdbcType=VARCHAR},
+      </if>
+      <if test="bidprice != null">
+        bidprice = #{bidprice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where bidid = #{bidid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gx.pro.entity.Dbidding">
+    update dbidding
+    set projid = #{projid,jdbcType=INTEGER},
+      biddata = #{biddata,jdbcType=TIMESTAMP},
+      username = #{username,jdbcType=VARCHAR},
+      cliname = #{cliname,jdbcType=VARCHAR},
+      bidprice = #{bidprice,jdbcType=DOUBLE}
+    where bidid = #{bidid,jdbcType=INTEGER}
+  </update>
+</mapper>
